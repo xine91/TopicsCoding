@@ -1,11 +1,3 @@
-// Рекурсивная функция для вычисления факториала
-function factorial(n) {
-	if (n <= 1) {
-		return 1;
-	}
-	return n * factorial(n - 1);
-}
-
 // Recursive function to calculate factorial
 function factorial(n) {
 	if (n <= 1) {
@@ -36,6 +28,38 @@ function bacteriaGrowth(n, days){
     return n * 1.2 + bacteriaGrowth(n, days - 1);
 }
 
+
+// Factorial using a for loop
+function factorial2(n) {
+    let result  = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+function fibonacci2(n) {
+    if (n <= 1) {
+        return n;
+    }
+    let a = 0;
+    let b = 1;
+    for (let i = 2; i <= n; i++) {
+        let temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return b;
+}
+
+function potenz2(n, k) {
+    let result = 1;
+    for (let i = 0; i < k; i++) {
+        result *= n;
+    }
+    return result;
+}
+
 const readline = require('readline');
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -47,7 +71,8 @@ console.log('1 - Factorial');
 console.log('2 - Fibonacci sequence');
 console.log('3 - Power');
 console.log('4 - Bacterial growth');
-rl.question('Enter 1, 2, 3 or 4: ', (choice) => {
+console.log('5 - For loop Factorial');
+rl.question('Enter 1, 2, 3, 4 or 5: ', (choice) => {
 	if (choice === '1') {
 		rl.question('Enter a number to calculate factorial: ', (input) => {
 			const number = parseInt(input);
@@ -93,6 +118,16 @@ rl.question('Enter 1, 2, 3 or 4: ', (choice) => {
                 }
                 rl.close();
             });
+        });
+    } else if (choice === '5') {
+        rl.question('Enter a number to calculate factorial: ', (input) => {
+            const number = parseInt(input);
+            if (isNaN(number) || number < 0) {
+                console.log('Please enter a non-negative integer.');
+            } else {
+                console.log(`Factorial of ${number} = ${factorial2(number)}`);
+            }
+            rl.close();
         });
     } else {
         console.log('Invalid choice. Please restart the program.');
